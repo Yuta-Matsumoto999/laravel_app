@@ -51,7 +51,7 @@ class TodoController extends Controller
         $input = $request->all();              //requestインスタンスをallで1つずつ全てとる　$inputに連想配列として格納　requestインスタンスから keyにinputタグのname　valueにinputタグのvalue
         $input['user_id'] = Auth::id();
         $this->todo->fill($input)->save();      //fill($input)でTodoインスタンスに格納する値を選別する　fillの返り値は title => value が格納されたTodoインスタンス
-        return redirect()->to('todo');          //$inputにはトークンとtitleがkeyとして格納されている　$fillableの指定によりtitle以外は除外される
+        return redirect()->route('todo.index');          //$inputにはトークンとtitleがkeyとして格納されている　$fillableの指定によりtitle以外は除外される
         //                                      //$inputのtitleのvalueが追加されたTodoインスタンスがfillの返り値になり、それをsaveでDBに格納
     }                                           //saveが返すのは真偽値
                                                 //redierct処理　toの引数は相対パス todoとしてルーティングされ、indexメソッドが動き、最終的に一覧画面に遷移する
@@ -92,7 +92,7 @@ class TodoController extends Controller
         $this->todo->find($id);
         $this->todo->fill($input);
         $this->todo->save(); //find($id)で$idが該当するレコードのTodoインスタンスを１つ取得 そのTodoインスタンスにfill($input)で精査したtitleのvalueが入る　そのTodoインスタンスをsaveでDBに格納
-        return redirect()->to('todo');                  //redierct処理　toの引数は相対パス todoとしてルーティングされ、indexメソッドが動き、最終的に一覧画面に遷移する
+        return redirect()->route('todo.index');                  //redierct処理　toの引数は相対パス todoとしてルーティングされ、indexメソッドが動き、最終的に一覧画面に遷移する
     }
         //
 
@@ -105,7 +105,7 @@ class TodoController extends Controller
     public function destroy($id)                //削除ボタンを押すとルーティングによりdestroyメソッドが走る
     {
         $this->todo->find($id)->delete();       //find($id)でidが該当するレコードのTodoインスタンスを１つ取得　それをdeleteでDBから削除　物理削除　deleteが返すのは真偽値
-        return redirect()->to('todo');          //redierct処理　toの引数は相対パス todoとしてルーティングされ、indexメソッドが動き、最終的に一覧画面に遷移する
+        return redirect()->route('todo.index');          //redierct処理　toの引数は相対パス todoとしてルーティングされ、indexメソッドが動き、最終的に一覧画面に遷移する
         //
     }
 }
