@@ -7,6 +7,7 @@
 <table class="table">
   <thead class="thead-light">
     <tr>
+      <th>ID</th>
       <th>やること</th>
       <th>作成日時</th>
       <th>更新日時</th>
@@ -16,6 +17,7 @@
   </thead>
   <tbody>
     <tr>
+      <td class="align-middle">1</td>
       <td class="align-middle">静的なTodoです</td>
       <td class="align-middle">2017/01/01</td>
       <td class="align-middle">2017/01/10</td>
@@ -25,6 +27,7 @@
   </tbody>
   @foreach ($todos as $todo) <!-- $todosはcompactで入ってきた配列　$todoはcollectionインスタンス -->
     <tr>
+      <td class="align-middle">{{ $todo->id }}</td>
       <td class="align-middle">{{ $todo->title }}</td>
       <td class="align-middle">{{ $todo->created_at }}</td>　　　　　　　　　　<!-- collectionインスタンスからvalueを１つずつ取得して出力 -->
       <td class="align-middle">{{ $todo->updated_at }}</td>　　　　　　　　　　
